@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>济南乐小诺 - 您身边的全生命周期健康管理专家</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+ 
+        body {
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+ 
+        /* 全局样式 */
+        :root {
+            --primary-orange: #FF6B35;
+            --light-orange: #FF8C5A;
+            --dark-orange: #E55100;
+            --gray: #F8F9FA;
+            --dark-gray: #495057;
+            --text: #212529;
+        }
+ 
+        /* 导航栏样式 - 右上方布局 */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+ 
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+ 
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-orange);
+        }
+ 
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+ 
+        nav a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+ 
+        nav a:hover {
+            color: var(--primary-orange);
+        }
+ 
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-orange);
+            transition: width 0.3s;
+        }
+ 
+        nav a:hover::after {
+            width: 100%;
+        }
+ 
+        /* 主页样式 */
+        .hero-section {
+            margin-top: 70px;
+            height: 600px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1576765974102-b756026ecee3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+ 
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+ 
+        .hero-content p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+ 
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+ 
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+ 
+        .btn-primary {
+            background: var(--primary-orange);
+            color: white;
+        }
+ 
+        .btn-primary:hover {
+            background: var(--dark-orange);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,107,53,0.4);
+        }
+ 
+        .btn-secondary {
+            background: white;
+            color: var(--primary-orange);
+            border: 2px solid var(--primary-orange);
+        }
+ 
+        .btn-secondary:hover {
+            background: var(--primary-orange);
+            color: white;
+        }
+ 
+        /* 核心服务亮点 */
+        .services-icons {
+            padding: 80px 20px;
+            background: var(--gray);
+        }
+ 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+ 
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: var(--text);
+        }
+ 
+        .icons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+ 
+        .icon-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+ 
+        .icon-card:hover {
+            transform: translateY(-5px);
+        }
+ 
+        .icon-card i {
+            font-size: 48px;
+            color: var(--primary-orange);
+            margin-bottom: 20px;
+        }
+ 
+        .icon-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+ 
+        .icon-card p {
+            color: var(--dark-gray);
+        }
+ 
+        /* 为什么选择我们 */
+        .why-us {
+            padding: 80px 20px;
+        }
+ 
+        .why-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+ 
+        .why-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+ 
+        .why-text p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+        }
+ 
+        .why-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+ 
+        /* 服务页面样式 */
+        .services-page {
+            padding: 100px 20px 60px;
+            display: none;
+        }
+ 
+        .services-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+ 
+        .tab-btn {
+            padding: 12px 25px;
+            background: white;
+            border: 2px solid var(--primary-orange);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--primary-orange);
+            font-weight: 500;
+        }
+ 
+        .tab-btn.active,
+        .tab-btn:hover {
+            background: var(--primary-orange);
+            color: white;
+        }
+ 
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+ 
+        .tab-content.active {
+            display: block;
+        }
+ 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+ 
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+ 
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--primary-orange);
+        }
+ 
+        .service-card h4 {
+            color: var(--primary-orange);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+ 
+        .service-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+ 
+        .service-card li {
+            padding: 5px 0;
+            color: var(--dark-gray);
+        }
+ 
+        .service-card li::before {
+            content: "✓ ";
+            color: var(--primary-orange);
+            font-weight: bold;
+        }
+ 
+        /* 服务流程 */
+        .process-steps {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+ 
+        .step {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+        }
+ 
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-orange);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+ 
+        .step:not(:last-child)::after {
+            content: "→";
+            position: absolute;
+            right: -20px;
+            top: 20px;
+            font-size: 24px;
+            color: var(--primary-orange);
+        }
+ 
+        /* 社区页面 */
+        .community-page {
+            padding: 100px 20px 60px;
+            display: none;
+        }
+ 
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+ 
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+ 
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+ 
+        .blog-image {
+            height: 200px;
+            background: var(--primary-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+ 
+        .blog-content {
+            padding: 25px;
+        }
+ 
+        .blog-content h4 {
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+ 
+        .blog-content p {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+ 
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            color: #999;
+            font-size: 14px;
+        }
+ 
+        /* 用户故事 */
+        .testimonials {
+            background: var(--gray);
+            padding: 60px 20px;
+            border-radius: 15px;
+        }
+ 
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+ 
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+ 
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+ 
+        .avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-orange);
+            border-radius: 50%;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+ 
+        .testimonial-info h5 {
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+ 
+        .testimonial-info span {
+            color: #999;
+            font-size: 14px;
+        }
+ 
+        .testimonial-card p {
+            color: var(--dark-gray);
+            line-height: 1.8;
+            font-style: italic;
+        }
+ 
+        /* 关于我们页面 */
+        .about-page {
+            padding: 100px 20px 60px;
+            display: none;
+        }
+ 
+        .about-section {
+            margin-bottom: 60px;
+        }
+ 
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+ 
+        .team-member {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+ 
+        .member-photo {
+            width: 150px;
+            height: 150px;
+            background: var(--primary-orange);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+ 
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+ 
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-orange);
+            transform: translateX(-50%);
+        }
+ 
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+ 
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+ 
+        .timeline-content {
+            width: 45%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+ 
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: var(--primary-orange);
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+ 
+        /* 联系我们页面 */
+        .contact-page {
+            padding: 100px 20px 60px;
+            display: none;
+        }
+ 
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 40px;
+        }
+ 
+        .contact-info {
+            background: var(--gray);
+            padding: 40px;
+            border-radius: 15px;
+        }
+ 
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+ 
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            margin-right: 20px;
+        }
+ 
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+ 
+        .form-group {
+            margin-bottom: 20px;
+        }
+ 
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text);
+            font-weight: 500;
+        }
+ 
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+ 
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+        }
+ 
+        .qr-code {
+            text-align: center;
+            margin-top: 40px;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+ 
+        .qr-box {
+            width: 200px;
+            height: 200px;
+            background: var(--gray);
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            color: var(--dark-gray);
+            font-size: 16px;
+        }
+ 
+        /* 页脚 */
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 80px;
+        }
+ 
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+ 
+        .social-links {
+            margin: 20px 0;
+        }
+ 
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-orange);
+            border-radius: 50%;
+            margin: 0 10px;
+            color: white;
+            line-height: 40px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+ 
+        .social-links a:hover {
+            background: var(--light-orange);
+        }
+ 
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+ 
+            .hero-content h1 {
+                font-size: 32px;
+            }
+ 
+            .hero-content p {
+                font-size: 18px;
+            }
+ 
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+ 
+            .why-content {
+                grid-template-columns: 1fr;
+            }
+ 
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+ 
+            .timeline::before {
+                left: 20px;
+            }
+ 
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                padding-left: 50px;
+            }
+ 
+            .timeline-content {
+                width: 100%;
+            }
+ 
+            .timeline-dot {
+                left: 20px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">🏥 济南乐小诺</div>
+            <nav>
+                <a href="#" onclick="showPage('home')">首页</a>
+                <a href="#" onclick="showPage('services')">健康服务</a>
+                <a href="#" onclick="showPage('community')">乐活社区</a>
+                <a href="#" onclick="showPage('about')">关于我们</a>
+                <a href="#" onclick="showPage('contact')">联系我们</a>
+            </nav>
+        </div>
+    </header>
+ 
+    <!-- 首页 -->
+    <div id="home-page" class="page">
+        <!-- 首屏大图 -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>乐享健康，诺守一生</h1>
+                <p>济南乐小诺——您身边的全生命周期健康管理专家</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary" onclick="showPage('services')">了解我们的服务</a>
+                    <a href="#" class="btn btn-secondary" onclick="showPage('contact')">立即咨询</a>
+                </div>
+            </div>
+        </section>
+ 
+        <!-- 核心服务亮点 -->
+        <section class="services-icons">
+            <div class="container">
+                <h2 class="section-title">我们的核心优势</h2>
+                <div class="icons-grid">
+                    <div class="icon-card">
+                        <i>👨‍⚕️</i>
+                        <h3>专业医护团队</h3>
+                        <p>汇聚资深医生、营养师、护理师，为您提供专业健康管理服务</p>
+                    </div>
+                    <div class="icon-card">
+                        <i>📋</i>
+                        <h3>个性化健康方案</h3>
+                        <p>根据您的身体状况，量身定制专属健康管理计划</p>
+                    </div>
+                    <div class="icon-card">
+                        <i>🏠</i>
+                        <h3>上门/到店服务</h3>
+                        <p>灵活的服务方式，让您在家也能享受专业护理</p>
+                    </div>
+                    <div class="icon-card">
+                        <i>💝</i>
+                        <h3>全程贴心陪护</h3>
+                        <p>从健康评估到康复指导，全程陪伴您的健康之路</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+ 
+        <!-- 为什么选择我们 -->
+        <section class="why-us">
+            <div class="container">
+                <h2 class="section-title">为什么选择乐小诺</h2>
+                <div class="why-content">
+                    <div class="why-text">
+                        <h3>有温度的健康管理服务</h3>
+                        <p>在济南乐小诺，我们相信健康管理不仅是冷冰冰的数据和处方，更是充满人文关怀的陪伴与支持。</p>
+                        <p>我们以"乐"为核心，让每一位客户都能在轻松愉悦的氛围中改善健康状况。无论是慢病管理、康复护理，还是家庭健康咨询，我们都用专业和爱心，为您守护全生命周期的健康。</p>
+                        <p>选择乐小诺，就是选择一个值得信赖的健康伙伴。</p>
+                    </div>
+                    <div class="why-image">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="专业医疗团队">
+                    </div>
+                </div>
+            </div>
+        </section>
+ 
+        <!-- 特色活动预告 -->
+        <section class="services-icons">
+            <div class="container">
+                <h2 class="section-title">近期特色活动</h2>
+                <div class="icons-grid">
+                    <div class="icon-card">
+                        <i>📅</i>
+                        <h3>春季养生大讲堂</h3>
+                        <p>3月15日 | 特邀中医专家讲解春季养生要点</p>
+                    </div>
+                    <div class="icon-card">
+                        <i>🤱</i>
+                        <h3>母婴健康知识讲座</h3>
+                        <p>3月22日 | 专业月嫂分享育儿经验</p>
+                    </div>
+                    <div class="icon-card">
+                        <i>💃</i>
+                        <h3>社区广场舞大赛</h3>
+                        <p>4月1日 | 健康快乐动起来，丰厚奖品等您拿</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+ 
+    <!-- 健康服务页面 -->
+    <div id="services-page" class="page services-page">
+        <div class="container">
+            <h1 class="section-title">健康服务</h1>
+            <p style="text-align: center; font-size: 18px; color: var(--dark-gray); margin-bottom: 50px;">
+                我们提供从预防、干预到康复的一站式健康管理服务
+            </p>
+ 
+            <!-- 服务分类标签 -->
+            <div class="services-tabs">
+                <button class="tab-btn active" onclick="showTab('chronic')">慢病管理</button>
+                <button class="tab-btn" onclick="showTab('nursing')">上门护理/康复</button>
+                <button class="tab-btn" onclick="showTab('checkup')">健康体检与咨询</button>
+                <button class="tab-btn" onclick="showTab('family')">母婴/家庭健康</button>
+                <button class="tab-btn" onclick="showTab('tcm')">中医养生理疗</button>
+            </div>
+ 
+            <!-- 慢病管理 -->
+            <div id="chronic" class="tab-content active">
+                <div class="service-grid">
+                    <div class="service-card">
+                        <h4>高血压管理</h4>
+                        <ul>
+                            <li>24小时动态血压监测</li>
+                            <li>个性化用药指导</li>
+                            <li>低盐饮食方案制定</li>
+                            <li>定期随访与调整</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h4>糖尿病管理</h4>
+                        <ul>
+                            <li>血糖监测与分析</li>
+                            <li>胰岛素使用指导</li>
+                            <li>糖尿病饮食搭配</li>
+                            <li>并发症预防指导</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h4>心脑血管病管理</h4>
+                        <ul>
+                            <li>心电图监测</li>
+                            <li>用药提醒与管理</li>
+                            <li>康复运动指导</li>
+                            <li>紧急情况处理</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- 上门护理/康复 -->
+            <div id="nursing" class="tab-content">
+                <div class="service-grid">
+                    <div class="service-card">
+                        <h4>术后康复护理</h4>
+                        <ul>
+                            <li>专业护士上门服务</li>
+                            <li>伤口护理与观察</li>
+                            <li>康复训练指导</li>
+                            <li>心理支持与疏导</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h4>长期卧床护理</h4>
+                        <ul>
+                            <li>翻身拍背防褥疮</li>
+                            <li>鼻饲管护理</li>
+                            <li>导尿管护理</li>
+                            <li>皮肤清洁护理</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h4>老年护理</h4>
+                        <ul>
+                            <li>日常生活照料</li>
+                            <li>用药管理</li>
+                            <li>陪伴就医</li>
+                            <li>健康监测</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- 健康体检与咨询 -->
+            <div id="checkup" class="tab-content">
+                <div class="service-grid">
+                    <div class="service-card">
+                        <h4>体检套餐预约</h4>
+                        <ul>
+                            <li>个性化体检方案</li>
+                            <li>三甲医院绿色通道</li>
+                            <li>专车接送服务</li>
+                            <li>营养早餐提供</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h4>体检报告解读</h4>
+                        <ul>
+                            <li>专家一对一解读</li>
+                            <li>异常指标分析</li>
+                            <li>健康风险评估</li>
+                            <li>改善建议制定</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h4>电话医生咨询</h4>
+                        <ul>
+                            <li>7×24小时服务</li>
+                            <li>三甲医院专家</li>
+                            <li>快速响应</li>
+                            <li>隐私保护</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- 母婴/家庭健康 -->
+            <div id="family" class="tab-content">
+                <div class="service-grid">
+                    <div class="service-card">
+                        <h4>月嫂/育儿嫂推荐</h4>
+                        <ul>
+                            <li>专业资质认证</li>
+                            <li>背景严格审核</li>
+                            <li>健康全面体检</li>
+                            <li>服务跟踪管理</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h4>家庭医生签约</h4>
+                        <ul>
+                            <li>专属家庭医生</li>
+                            <li>上门服务</li>
+                            <li>健康管理档案</li>
+                            <li>优先预约就诊</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h4>儿童生长发育监测</h4>
+                        <ul>
+                            <li>生长曲线评估</li>
+                            <li>营养状况分析</li>
+                            <li>发育里程碑跟踪</li>
+                            <li>早期干预指导</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- 中医养生理疗 -->
+            <div id="tcm" class="tab-content">
+                <div class="service-grid">
+                    <div class="service-card">
+                        <h4>针灸调理</h4>
+                        <ul>
+                            <li>资深中医师操作</li>
+                            <li>个性化穴位方案</li>
+                            <li>慢性疾病调理</li>
+                            <li>疼痛缓解治疗</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h4>推拿按摩</h4>
+                        <ul>
+                            <li>专业推拿师</li>
+                            <li>经络调理</li>
+                            <li>肌肉放松</li>
+                            <li>上门服务</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h4>艾灸养生</h4>
+                        <ul>
+                            <li>传统艾条艾灸</li>
+                            <li>温经散寒</li>
+                            <li>增强免疫力</li>
+                            <li>养生保健</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- 服务流程 -->
+            <section style="margin-top: 80px;">
+                <h2 class="section-title">服务流程</h2>
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>在线预约</h4>
+                        <p>电话或微信预约服务</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>健康评估</h4>
+                        <p>专业团队评估需求</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>制定方案</h4>
+                        <p>个性化服务方案</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h4>实施服务</h4>
+                        <p>专业团队提供服务</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <h4>跟踪反馈</h4>
+                        <p>定期回访与调整</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+ 
+    <!-- 乐活社区页面 -->
+    <div id="community-page" class="page community-page">
+        <div class="container">
+            <h1 class="section-title">乐活社区</h1>
+            <p style="text-align: center; font-size: 18px; color: var(--dark-gray); margin-bottom: 50px;">
+                在这里，健康管理不再枯燥，让快乐与健康同行
+            </p>
+ 
+            <!-- 健康资讯 -->
+            <section>
+                <h2 class="section-title">健康资讯</h2>
+                <div class="blog-posts">
+                    <div class="blog-card">
+                        <div class="blog-image">春季养生</div>
+                        <div class="blog-content">
+                            <h4>春季养肝正当时，这些食疗方请收好</h4>
+                            <p>春季是养肝的黄金季节，本文将介绍几种简单易行的养肝食疗方法，让您轻松度过春季...</p>
+                            <div class="blog-meta">
+                                <span>2024-03-10</span>
+                                <span>阅读 1.2k</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <div class="blog-image">运动健身</div>
+                        <div class="blog-content">
+                            <h4>适合中老年人的5个简单运动</h4>
+                            <p>运动是保持健康的最佳方式，这5个简单的运动适合中老年人日常锻炼，增强体质...</p>
+                            <div class="blog-meta">
+                                <span>2024-03-08</span>
+                                <span>阅读 856</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <div class="blog-image">营养食谱</div>
+                        <div class="blog-content">
+                            <h4>糖尿病人的一周健康食谱</h4>
+                            <p>科学合理的饮食搭配是控制血糖的关键，这里为您提供一周的健康食谱参考...</p>
+                            <div class="blog-meta">
+                                <span>2024-03-05</span>
+                                <span>阅读 2.3k</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+ 
+            <!-- 会员活动 -->
+            <section style="margin-top: 80px;">
+                <h2 class="section-title">会员活动</h2>
+                <div class="blog-posts">
+                    <div class="blog-card">
+                        <div class="blog-image" style="background: linear-gradient(135deg, #FF6B35, #FF8C5A);">社区义诊</div>
+                        <div class="blog-content">
+                            <h4>3月社区义诊活动预告</h4>
+                            <p>本月20日，我们将在阳光社区举办免费义诊活动，现场有内科、中医科专家坐诊...</p>
+                            <p style="color: var(--primary-orange); font-weight: 500;">活动时间：2024-03-20 09:00-16:00</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <div class="blog-image" style="background: linear-gradient(135deg, #4CAF50, #66BB6A);">亲子运动会</div>
+                        <div class="blog-content">
+                            <h4>春季亲子运动会开始报名啦！</h4>
+                            <p>增进亲子关系，培养运动习惯，现场还有丰富的奖品等您来拿...</p>
+                            <p style="color: var(--primary-orange); font-weight: 500;">活动时间：2024-03-25 14:00-17:00</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <div class="blog-image" style="background: linear-gradient(135deg, #9C27B0, #BA68C8);">健康大讲堂</div>
+                        <div class="blog-content">
+                            <h4>高血压防治知识讲座</h4>
+                            <p>特邀省立医院心血管专家，为您详细讲解高血压的预防与治疗知识...</p>
+                            <p style="color: var(--primary-orange); font-weight: 500;">活动时间：2024-03-28 19:00-21:00</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+ 
+            <!-- 用户故事 -->
+            <section class="testimonials">
+                <h2 class="section-title">用户故事</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="avatar">张</div>
+                            <div class="testimonial-info">
+                                <h5>张阿姨 65岁</h5>
+                                <span>糖尿病患者</span>
+                            </div>
+                        </div>
+                        <p>"自从加入乐小诺的慢病管理，我的血糖控制得非常好。护士小王每周都会上门给我测血糖，还教我做糖尿病餐。现在我的血糖稳定了，人也精神多了。感谢乐小诺让我重新找回了健康的生活！"</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="avatar">李</div>
+                            <div class="testimonial-info">
+                                <h5>李先生 42岁</h5>
+                                <span>术后康复患者</span>
+                            </div>
+                        </div>
+                        <p>"做完心脏手术后，乐小诺的康复师每天都来家里帮我做康复训练。他们的服务非常专业，而且很有耐心。现在我已经恢复得很好了，真的非常感谢他们的帮助。"</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="avatar">王</div>
+                            <div class="testimonial-info">
+                                <h5>王妈妈 28岁</h5>
+                                <span>新手妈妈</span>
+                            </div>
+                        </div>
+                        <p>"乐小诺推荐的月嫂刘姐非常专业，把宝宝照顾得很好，还教了我很多育儿知识。有了她的帮助，我才能安心坐月子。现在宝宝健康成长，我们全家都很满意！"</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+ 
+    <!-- 关于我们页面 -->
+    <div id="about-page" class="page about-page">
+        <div class="container">
+            <h1 class="section-title">关于我们</h1>
+ 
+            <!-- 公司简介 -->
+            <section class="about-section">
+                <h2 class="section-title">公司简介</h2>
+                <div style="max-width: 800px; margin: 0 auto; text-align: center; line-height: 1.8; color: var(--dark-gray);">
+                    <p style="font-size: 18px; margin-bottom: 20px;">
+                        <strong style="color: var(--primary-orange);">济南乐小诺健康管理有限公司</strong>成立于2018年，是一家专注于为济南市民提供全生命周期健康管理服务的专业机构。
+                    </p>
+                    <p style="margin-bottom: 20px;">
+                        我们的愿景是<strong>"让每个人都能乐享健康"</strong>，使命是通过专业的医疗团队、温馨的服务态度、科学的管理方法，为每一位客户提供个性化的健康管理解决方案。
+                    </p>
+                    <p>
+                        四年来，我们已经服务了超过5000个家庭，帮助数千名慢性病患者改善了生活质量，让健康管理不再是一项负担，而是一种快乐的生活方式。
+                    </p>
+                </div>
+            </section>
+ 
+            <!-- 团队介绍 -->
+            <section class="about-section">
+                <h2 class="section-title">我们的团队</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-photo">陈</div>
+                        <h4>陈主任</h4>
+                        <p style="color: var(--primary-orange); margin-bottom: 10px;">首席医疗顾问</p>
+                        <p style="color: var(--dark-gray);">三甲医院内科主任医师，30年临床经验，擅长慢性病管理与康复指导。</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-photo">刘</div>
+                        <h4>刘护士长</h4>
+                        <p style="color: var(--primary-orange); margin-bottom: 10px;">护理部主任</p>
+                        <p style="color: var(--dark-gray);">主管护师，15年护理经验，精通各类专科护理技术。</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-photo">王</div>
+                        <h4>王营养师</h4>
+                        <p style="color: var(--primary-orange); margin-bottom: 10px;">高级营养师</p>
+                        <p style="color: var(--dark-gray);">临床营养学硕士，擅长慢病营养调理和母婴营养指导。</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-photo">张</div>
+                        <h4>张医生</h4>
+                        <p style="color: var(--primary-orange); margin-bottom: 10px;">中医理疗师</p>
+                        <p style="color: var(--dark-gray);">中医学博士，精通针灸推拿，擅长中医养生保健。</p>
+                    </div>
+                </div>
+            </section>
+ 
+            <!-- 资质荣誉 -->
+            <section class="about-section">
+                <h2 class="section-title">资质荣誉</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 40px;">
+                    <div style="background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
+                        <div style="font-size: 48px; color: var(--primary-orange); margin-bottom: 15px;">🏅</div>
+                        <h4>医疗机构执业许可证</h4>
+                        <p style="color: var(--dark-gray);">济南市卫健委颁发</p>
+                    </div>
+                    <div style="background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
+                        <div style="font-size: 48px; color: var(--primary-orange); margin-bottom: 15px;">⭐</div>
+                        <h4>优秀健康管理机构</h4>
+                        <p style="color: var(--dark-gray);">2023年度市民最满意机构</p>
+                    </div>
+                    <div style="background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
+                        <div style="font-size: 48px; color: var(--primary-orange); margin-bottom: 15px;">🤝</div>
+                        <h4>三甲医院合作单位</h4>
+                        <p style="color: var(--dark-gray);">山东省立医院合作伙伴</p>
+                    </div>
+                    <div style="background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 3px 15px rgba(0,0,0,0.1);">
+                        <div style="font-size: 48px; color: var(--primary-orange); margin-bottom: 15px;">💎</div>
+                        <h4>ISO9001质量管理体系</h4>
+                        <p style="color: var(--dark-gray);">国际质量标准认证</p>
+                    </div>
+                </div>
+            </section>
+ 
+            <!-- 发展历程 -->
+            <section class="about-section">
+                <h2 class="section-title">发展历程</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4 style="color: var(--primary-orange);">2018年3月</h4>
+                            <h3>公司成立</h3>
+                            <p>济南乐小诺健康管理有限公司正式成立，开始为社区居民提供健康管理服务。</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                        <div></div>
+                    </div>
+                    <div class="timeline-item">
+                        <div></div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4 style="color: var(--primary-orange);">2019年6月</h4>
+                            <h3>服务升级</h3>
+                            <p>推出上门护理服务，组建专业医护团队，服务范围覆盖济南市区。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4 style="color: var(--primary-orange);">2021年9月</h4>
+                            <h3>技术革新</h3>
+                            <p>引入智能健康管理系统，实现线上线下一体化服务。</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                        <div></div>
+                    </div>
+                    <div class="timeline-item">
+                        <div></div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4 style="color: var(--primary-orange);">2023年12月</h4>
+                            <h3>品牌升级</h3>
+                            <p>获得"济南市优秀健康管理机构"称号，服务客户突破5000家。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4 style="color: var(--primary-orange);">2024年</h4>
+                            <h3>未来展望</h3>
+                            <p>继续深耕健康管理领域，为更多家庭带来健康和快乐。</p>
+                        </div>
+                        <div class="timeline-dot"></div>
+                        <div></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+ 
+    <!-- 联系我们页面 -->
+    <div id="contact-page" class="page contact-page">
+        <div class="container">
+            <h1 class="section-title">联系我们</h1>
+            <p style="text-align: center; font-size: 18px; color: var(--dark-gray); margin-bottom: 50px;">
+                我们随时为您提供专业的健康咨询服务
+            </p>
+ 
+            <div class="contact-grid">
+                <!-- 联系信息 -->
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>公司地址</h4>
+                            <p>山东省济南市历下区经十路12345号乐小诺健康管理中心</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h4>联系电话</h4>
+                            <p>24小时服务热线：400-123-4567</p>
+                            <p>客服手机：138-5312-3456</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>电子邮箱</h4>
+                            <p>客服邮箱：service@lexiaonuo.com</p>
+                            <p>商务合作：business@lexiaonuo.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">⏰</div>
+                        <div>
+                            <h4>服务时间</h4>
+                            <p>24小时服务热线</p>
+                            <p>门诊时间：周一至周日 8:00-20:00</p>
+                        </div>
+                    </div>
+                </div>
+ 
+                <!-- 预约表单 -->
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 30px; color: var(--text);">在线预约</h3>
+                    <form onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">您的姓名 *</label>
+                            <input type="text" id="name" name="name" required placeholder="请输入您的姓名">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">联系电话 *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="请输入您的手机号码">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">服务类型 *</label>
+                            <select id="service" name="service" required>
+                                <option value="">请选择您需要的服务</option>
+                                <option value="chronic">慢病管理</option>
+                                <option value="nursing">上门护理/康复</option>
+                                <option value="checkup">健康体检与咨询</option>
+                                <option value="family">母婴/家庭健康</option>
+                                <option value="tcm">中医养生理疗</option>
+                                <option value="other">其他服务</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">需求描述</label>
+                            <textarea id="message" name="message" rows="4" placeholder="请简单描述您的健康需求或问题"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">提交预约申请</button>
+                    </form>
+                </div>
+            </div>
+ 
+            <!-- 微信二维码 -->
+            <div class="qr-code">
+                <h3 style="color: var(--text); margin-bottom: 20px;">扫码添加微信客服</h3>
+                <div class="qr-box">
+                    乐小诺健康管家<br>微信二维码
+                </div>
+                <p style="color: var(--dark-gray); margin-top: 20px;">
+                    扫码添加"乐小诺健康管家"微信，享受一对一健康咨询服务
+                </p>
+            </div>
+ 
+            <!-- 地图嵌入区域 -->
+            <section style="margin-top: 60px;">
+                <h2 class="section-title">我们的位置</h2>
+                <div style="background: var(--gray); height: 400px; border-radius: 15px; display: flex; align-items: center; justify-content: center; color: var(--dark-gray);">
+                    <div style="text-align: center;">
+                        <div style="font-size: 48px; color: var(--primary-orange); margin-bottom: 20px;">🗺️</div>
+                        <h3>地图加载区域</h3>
+                        <p>此处可嵌入高德/百度地图<br>显示具体位置和导航信息</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+ 
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo" style="color: white; margin-bottom: 20px;">🏥 济南乐小诺健康管理</div>
+            <p style="margin-bottom: 10px;">您身边的全生命周期健康管理专家</p>
+            <p>24小时服务热线：400-123-4567 | 地址：济南市历下区经十路12345号</p>
+            <div class="social-links">
+                <a href="#" title="微信">📱</a>
+                <a href="#" title="微博">🌐</a>
+                <a href="#" title="邮箱">📧</a>
+            </div>
+            <p style="margin-top: 30px; font-size: 14px; opacity: 0.7;">
+                © 2024 济南乐小诺健康管理有限公司 版权所有 | 鲁ICP备2024xxxxx号
+            </p>
+        </div>
+    </footer>
+ 
+    <script>
+        // 页面切换功能
+        function showPage(pageName) {
+            // 隐藏所有页面
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.style.display = 'none';
+            });
+ 
+            // 显示指定页面
+            const targetPage = document.getElementById(pageName + '-page');
+            if (targetPage) {
+                targetPage.style.display = 'block';
+                // 滚动到页面顶部
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+ 
+            // 如果是服务页面，显示第一个标签
+            if (pageName === 'services') {
+                showTab('chronic');
+            }
+        }
+ 
+        // 标签切换功能
+        function showTab(tabName) {
+            // 移除所有标签的active类
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+ 
+            // 隐藏所有标签内容
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+ 
+            // 激活当前标签
+            const currentButton = Array.from(tabButtons).find(btn => 
+                btn.textContent.includes(
+                    tabName === 'chronic' ? '慢病管理' :
+                    tabName === 'nursing' ? '上门护理' :
+                    tabName === 'checkup' ? '体检' :
+                    tabName === 'family' ? '母婴' : '中医'
+                )
+            );
+            if (currentButton) {
+                currentButton.classList.add('active');
+            }
+ 
+            // 显示对应内容
+            const targetContent = document.getElementById(tabName);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        }
+ 
+        // 表单提交处理
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                service: document.getElementById('service').value,
+                message: document.getElementById('message').value
+            };
+ 
+            // 简单的表单验证
+            if (!formData.name || !formData.phone || !formData.service) {
+                alert('请填写必填项！');
+                return;
+            }
+ 
+            // 手机号格式验证
+            const phoneRegex = /^1[3-9]\d{9}$/;
+            if (!phoneRegex.test(formData.phone)) {
+                alert('请输入正确的手机号码！');
+                return;
+            }
+ 
+            // 模拟提交成功
+            alert('预约提交成功！我们的客服人员将在24小时内与您联系。');
+            
+            // 清空表单
+            document.getElementById('name').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('service').value = '';
+            document.getElementById('message').value = '';
+        }
+ 
+        // 页面加载时显示首页
+        window.addEventListener('load', function() {
+            showPage('home');
+        });
+ 
+        // 平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
